@@ -76,14 +76,24 @@ def p15_01_10_2023():
     return res
 def p15_01_10_2023_2():
     if DEBUG: print('\n>>p15_01_10_2023_2')
-    res = 0
+    res = cnt = 0
     # x = sqrt(k) - b, b < 1
     # for k in [i^2, (i+1)^2], x = i 
     for i in range(1, 1000):
         for k in range(i*i, (i+1)*(i+1)):
             if k % i == 0:
                 res += k
-    return res
+                cnt += 1
+    return res, cnt
+def p15_01_10_2023_3():
+    if DEBUG: print('\n>>p15_01_10_2023_3')
+    res = 0
+    # for k in [i^2, (i+1)^2], only 3 numbers are able to be divided by i
+    # i^2, i^2 + i, i^2 + 2i
+    # so counter of this kind of numbers is 3*999 = 2997
+    # sum = 3(1**2+2**2+...+n**2) + 3(1+2+...+n) = n(n+1)(2n+1)/2 + 3n(n+1)/2
+    i = 999
+    return i*(i+1)*(2*i+1)//2+3*i*(i+1)//2
 
 
 
@@ -92,5 +102,6 @@ def main():
     # print(p14_01_10_2023_2())
     print(p15_01_10_2023())
     print(p15_01_10_2023_2())
+    print(p15_01_10_2023_3())
 
 main()
